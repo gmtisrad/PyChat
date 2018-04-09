@@ -4,7 +4,7 @@ from socket import SOCK_STREAM
 from threading import Thread
 
 #Functionality for handling new connections
-def accept_new_connections:
+def accept_new_connections():
     while True:
         #socket.accept() returns a socket object, and the associated address
         client, client_address = SERVER.accept()
@@ -50,7 +50,7 @@ MAX_CLIENTS = 16
 
 #Creates a socket for the server
 SERVER = socket(AF_INET, SOCK_STREAM)
-SERVER.bind(ADDR)
+SERVER.bind(ADDRESS)
 
 if __name__ == '__main__':
     SERVER.listen(MAX_CLIENTS)
