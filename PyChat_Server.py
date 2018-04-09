@@ -14,7 +14,7 @@ def accept_new_connections():
         #Stores new client address in a dictionary indexed by the associated socket
         addresses[client] = client_address
         #Creates a thread to handle new client making the server asynchronous
-        Thread(target=handle_client, args=(client,)).start()
+        Thread(target=client_interaction, args=(client,)).start()
 
 #Functionality for handling client interaction. (argument == client socket)
 def client_interaction(client):
@@ -41,6 +41,9 @@ def broadcast(message, name=""):
     for sockets in clients:
         sockets.send(message + name)
 
+clients = {}
+addresses = {}
+
 #Constants used by server
 HOST = ''
 PORT = 33000
@@ -52,5 +55,10 @@ MAX_CLIENTS = 16
 SERVER = socket(AF_INET, SOCK_STREAM)
 SERVER.bind(ADDRESS)
 
-if __name__ == '__main__':
-    SERVER.listen(MAX_CLIENTS)
+if __name__ == "__main__":
+    SERVER.listen(5)
+    print("Waiting for connection...")
+    ACCEPT_THREAD = Thread(target=accept_new_connections)
+    ACCEPT_THREAD.start()
+    ACCEPT_THREAD.join()
+    SERVER.close()
