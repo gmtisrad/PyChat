@@ -37,7 +37,7 @@ client_socket.connect(ADDR)
 
 top = tk.Tk()
 top.title("PyChat")
-chat_frame = tk.Frame(top)
+chat_frame = tk.Frame(top, height = 20, width = 60)
 #tkinter string type
 my_msg = tk.StringVar()
 my_msg.set("Enter Text...")
@@ -46,15 +46,15 @@ scrollbar = tk.Scrollbar(chat_frame)
 msg_queue = tk.Listbox(chat_frame, height = 20, width = 60, yscrollcommand = scrollbar.set)
 scrollbar.pack(side = tk.RIGHT, fill = tk.Y)
 msg_queue.pack(side = tk.LEFT, fill = tk.BOTH)
-msg_queue.pack()
 
 chat_frame.pack()
 
-chat_field = tk.Entry(top, textvariable = my_msg)
+chat_field = tk.Entry(top, textvariable = my_msg, width = 50)
 chat_field.bind("<Return>", send)
-chat_field.pack()
-send_button = tk.Button(top, text="Send", command=send)
-send_button.pack()
+send_button = tk.Button(top, text="Send", command=send, width = 10)
+
+chat_field.pack(side = tk.LEFT)
+send_button.pack(side = tk.RIGHT)
 
 top.protocol("WM_DELETE_WINDOW", gui_close)
 

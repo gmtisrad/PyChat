@@ -21,7 +21,7 @@ def client_interaction(client):
     name = client.recv(BUFFER_SIZE).decode("utf8")
     welcome = "Welcome %s, to quit enter '~quit'" % name
     client.send (bytes(welcome, "utf8"))
-    msg = "%s has joined the chat!" % name
+    msg = "%s has joined." % name
     broadcast (bytes(msg, "utf8"))
     clients[client] = name
 
