@@ -39,7 +39,7 @@ def client_interaction(client):
 #Functionality to communicate with all connected clients.
 def broadcast(message, name=""):
     for sockets in clients:
-        sockets.send(message + name)
+        sockets.send(bytes(name, "utf8") + message)
 
 clients = {}
 addresses = {}
